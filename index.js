@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["*"],
+    origin: ["https://thriving-beignet-91f203.netlify.app/"],
     credentials: true,
   })
 );
