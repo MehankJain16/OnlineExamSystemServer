@@ -33,7 +33,12 @@ exports.register = async (req, res) => {
     expireTime.setDate(expireTime.getDate() + 5);
 
     return res
-      .cookie("token", token, { httpOnly: true, expires: expireTime })
+      .cookie("token", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+        expires: expireTime,
+      })
       .status(201)
       .json({ success: true, error: null });
   } catch (error) {
@@ -82,7 +87,12 @@ exports.login = async (req, res) => {
     expireTime.setDate(expireTime.getDate() + 5);
 
     return res
-      .cookie("token", token, { httpOnly: true, expires: expireTime })
+      .cookie("token", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+        expires: expireTime,
+      })
       .status(201)
       .json({ success: true, error: null });
   } catch (error) {
@@ -94,6 +104,8 @@ exports.logout = (req, res) => {
   return res
     .cookie("token", "", {
       httpOnly: true,
+      secure: true,
+      sameSite: "none",
       expires: new Date(0),
     })
     .status(200)
